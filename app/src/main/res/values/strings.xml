@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Polytech Applicant</string>
+
+    <string name="title_timeline">Selection Committee Timeline</string>
+    <string name="title_structure">Structure</string>
+    <string name="title_locations">Locations</string>
+    <string name="title_menu">Menu</string>
+
+    <string name="institutes_array_item_01">Institute of Humanities</string>
+    <string name="institutes_array_item_02">Institute of Computer Science and Technology</string>
+    <string name="institutes_array_item_03">Institute of Applied Mathematics and Mechanics</string>
+    <string name="institutes_array_item_04">Institute of Energy and Transport Systems</string>
+    <string name="institutes_array_item_05">Institute of Civil Engineering</string>
+    <string name="institutes_array_item_06">Institute of Metallurgy, Mechanical Engineering and Transport</string>
+    <string name="institutes_array_item_07">Institute of Physics, Nanotechnology and Telecommunications</string>
+    <string name="institutes_array_item_08">Institute of Industrial Management, Economics and Trade</string>
+    <string name="institutes_array_item_09">Institute of Biomedical Systems and Technologies</string>
+    <string name="institutes_array_item_10">Institute of Advanced Manufacturing Technologies</string>
+    <string name="institutes_array_item_11">Institute of Physical Education, Sport and Tourism</string>
+
+    <string name="buildings_array_item_01">Main Building</string>
+
+    <string name="months_array_item_01">January</string>
+    <string name="months_array_item_02">February</string>
+    <string name="months_array_item_03">March</string>
+    <string name="months_array_item_04">April</string>
+    <string name="months_array_item_05">May</string>
+    <string name="months_array_item_06">June</string>
+    <string name="months_array_item_07">July</string>
+    <string name="months_array_item_08">August</string>
+    <string name="months_array_item_09">September</string>
+    <string name="months_array_item_10">October</string>
+    <string name="months_array_item_11">November</string>
+    <string name="months_array_item_12">December</string>
+    
+    <string name="government_funded_education">Government-funded Education</string>
+    <string name="self_funded_education">Self-funded Education</string>
+
+    <string name="full_time_education_form">Full-time Education</string>
+    <string name="extramural_education_form">Extramural Studies</string>
+    <string name="part_time_education_form">Part-time Education</string>
+
+    <string name="study_programs_valued">%1$d Study Programs</string>
+
+    <string name="study_programs">Study Programs</string>
+    <string name="about_institute">Study Programs</string>
+    <string name="departments">Departments</string>
+    <string name="international_activities">International Activities</string>
+</resources>
