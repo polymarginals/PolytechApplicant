@@ -44,11 +44,10 @@ public class Location {
     @NonNull
     @Override
     public String toString ( ) {
-        return new StringBuilder( )
-                .append("Location{")
-                .append("addressName='").append(addressName != null ? addressName : "").append('\'')
-                .append(", longitude=").append(longitude)
-                .append(", latitude=").append(latitude)
-                .append('}').toString( );
+        return "Location {\n" +
+                "\taddressName = '" + (addressName != null ? addressName : "") + '\'' + '\n' +
+                "\tlongitude = " + longitude + '\n' +
+                "\tlatitude = " + latitude + '\n' +
+                '}';
     }
 }

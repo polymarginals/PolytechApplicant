@@ -79,12 +79,15 @@ public class TimelineFragment extends HomeFragment {
         return mView;
     }
 
-    private void initToolbar ( ) {
-        ((MainActivity) mActivity).setToolbarTitle(R.string.title_timeline);
-    }
-
     private void initViews ( ) {
         mRecyclerView = mView.findViewById(R.id.events_recycler);
+    }
+
+    private void initToolbar ( ) {
+        ((MainActivity) mActivity).setToolbarSpannableTitle(
+                mActivity.getString(R.string.title_timeline),
+                R.color.colorDark
+        );
     }
 
     private void setContent ( ) {
@@ -158,6 +161,6 @@ public class TimelineFragment extends HomeFragment {
     }
 
     public interface OnTimelineEventInteractionListener {
-        void onListFragmentInteraction (TimelineEvent event);
+        void onTimelineEventSelected(TimelineEvent event);
     }
 }

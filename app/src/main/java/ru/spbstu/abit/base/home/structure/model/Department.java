@@ -33,10 +33,9 @@ public class Department {
     @NonNull
     @Override
     public String toString ( ) {
-        return new StringBuilder( )
-                .append("Department{")
-                .append("name='").append(name != null ? name : "").append('\'')
-                .append(", url='").append(url != null ? url : "").append('\'')
-                .append('}').toString();
+        return "Department {\n" +
+                "\tname = '" + (name != null ? name : "") + '\'' + '\n' +
+                "\turl = '" + (url != null ? url : "") + '\'' + '\n' +
+                '}';
     }
 }

@@ -92,15 +92,14 @@ public class Person {
     @NonNull
     @Override
     public String toString ( ) {
-        return new StringBuilder( )
-                .append("Person{")
-                .append("url='").append(url != null ? url : "").append('\'')
-                .append(", fullName='").append(fullName != null ? fullName : "").append('\'')
-                .append(", positions=").append(positions != null ? positions : "")
-                .append(", email='").append(email != null ? email : "").append('\'')
-                .append(", phone='").append(phone != null ? phone : "").append('\'')
-                .append(", location=").append(location != null ? location : "")
-                .append(", degree=").append(url != null ? url : "")
-                .append('}').toString( );
+        return "Person {\n" +
+                "\turl = '" + (url != null ? url : "") + '\'' + '\n' +
+                "\tfullName = '" + (fullName != null ? fullName : "") + '\'' + '\n' +
+                "\tpositions = " + (positions != null ? positions : "") + '\n' +
+                "\temail = '" + (email != null ? email : "") + '\'' + '\n' +
+                "\tphone = '" + (phone != null ? phone : "") + '\'' + '\n' +
+                "\tlocation = " + (location != null ? location : "") + '\n' +
+                "\tdegree = " + (url != null ? url : "") + '\n' +
+                '}';
     }
 }

@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'com.google.gms.google-services'
+
+apply plugin: 'io.fabric'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -9,6 +13,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
     buildTypes {
         release {
@@ -30,7 +37,20 @@ dependencies {
 
     implementation 'net.opacapp:multiline-collapsingtoolbar:27.1.1'
 
+    // Slidr - making able activity/fragment to be closed on slide
+    implementation 'com.r0adkll:slidableactivity:2.0.6'
+
+    // SwipeLayout - sliding out layout hided behind recycler elements
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+
+    // Target View - pointing out any View on screen
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.12.0'
+
     implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    implementation 'com.google.firebase:firebase-core:16.0.8'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

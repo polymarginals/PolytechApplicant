@@ -77,13 +77,13 @@ public class TimelineEvent {
     @NonNull
     @Override
     public String toString ( ) {
-        return "TimelineEvent{" +
-                "educationForm='" + educationForm + '\'' +
-                ", fundingForm='" + fundingForm + '\'' +
-                ", description='" + description + '\'' +
-                ", month='" + month + '\'' +
-                ", day='" + day + '\'' +
-                ", selected='" + selected + '\'' +
+        return "TimelineEvent {\n" +
+                "\teducationForm = '" + (educationForm != null ? educationForm : "") + '\'' + '\n' +
+                "\tfundingForm = '" + (fundingForm != null ? fundingForm : "") + '\'' + '\n' +
+                "\tdescription = '" + (description != null ? description : "") + '\'' + '\n' +
+                "\tmonth = '" + (month != null ? month : "") + '\'' + '\n' +
+                "\tday = '" + day + '\'' + '\n' +
+                "\tselected = '" + selected + '\'' + '\n' +
                 '}';
     }
 }

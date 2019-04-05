@@ -1,7 +1,6 @@
 package ru.spbstu.abit.base.home.timeline.view;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +13,8 @@ import java.util.List;
 import ru.spbstu.abit.R;
 import ru.spbstu.abit.base.home.timeline.TimelineFragment;
 import ru.spbstu.abit.base.home.timeline.model.TimelineEvent;
+
+import static ru.spbstu.abit.core.App.getColorId;
 
 public class TimelineEventsRecyclerAdapter
         extends RecyclerView.Adapter< TimelineEventsRecyclerAdapter.ViewHolder > {
@@ -62,20 +63,15 @@ public class TimelineEventsRecyclerAdapter
         holder.mDescriptionTextView.setText(event.getDescription());
 
         if (event.isSelected()) {
-            if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ) {
-                holder.mMonthTextView.setTextColor(mContext.getColor(R.color.colorPrimary));
-                holder.mDayTextView.setTextColor(mContext.getColor(R.color.colorPrimary));
-            } else {
-                holder.mMonthTextView.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
-                holder.mDayTextView.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
-            }
+            holder.mMonthTextView.setTextColor(getColorId(R.color.colorPrimary));
+            holder.mDayTextView.setTextColor(getColorId(R.color.colorPrimary));
         }
 
         holder.mView.setOnClickListener(new View.OnClickListener( ) {
             @Override
             public void onClick (View v) {
                 if ( null != mListener ) {
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onTimelineEventSelected(holder.mItem);
                 }
             }
         });
@@ -109,14 +105,14 @@ public class TimelineEventsRecyclerAdapter
         @NonNull
         @Override
         public String toString ( ) {
-            return "ViewHolder{" +
-                    "mView=" + mView +
-                    ", mMonthTextView=" + mMonthTextView +
-                    ", mDayTextView=" + mDayTextView +
-                    ", mEducationFormTextView=" + mEducationFormTextView +
-                    ", mFundingFormTextView=" + mFundingFormTextView +
-                    ", mDescriptionTextView=" + mDescriptionTextView +
-                    ", mItem=" + mItem +
+            return "ViewHolder {\n" +
+                    "\tmView = " + (mView != null ? mView : "") + '\n' +
+                    "\tmMonthTextView = " + (mMonthTextView != null ? mMonthTextView : "") + '\n' +
+                    "\tmDayTextView = " + (mDayTextView != null ? mDayTextView : "") + '\n' +
+                    "\tmEducationFormTextView = " + (mEducationFormTextView != null ? mEducationFormTextView : "") + '\n' +
+                    "\tmFundingFormTextView = " + (mFundingFormTextView != null ? mFundingFormTextView : "") + '\n' +
+                    "\tmDescriptionTextView = " + (mDescriptionTextView != null ? mDescriptionTextView : "") + '\n' +
+                    "\tmItem = " + (mItem != null ? mItem : "") + '\n' +
                     '}';
         }
     }

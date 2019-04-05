@@ -18,7 +18,7 @@ public class Position {
     }
 
     public String getPositionName ( ) {
-        return positionName == null ? "No Position Name" : positionName;
+        return positionName;
     }
 
     public void setPositionName (String positionName) {
@@ -26,7 +26,7 @@ public class Position {
     }
 
     public Department getDepartment ( ) {
-        return department == null ? new Department(null, null) : department;
+        return department;
     }
 
     public void setDepartment (Department department) {
@@ -34,7 +34,7 @@ public class Position {
     }
 
     public Institute getInstitute ( ) {
-        return institute == null ? new Institute(null, null, null, null, 0, null) : institute;
+        return institute;
     }
 
     public void setInstitute (Institute institute) {
@@ -44,11 +44,10 @@ public class Position {
     @NonNull
     @Override
     public String toString ( ) {
-        return new StringBuilder( )
-                .append("Position{")
-                .append("positionName='").append(positionName != null ? positionName : "").append('\'')
-                .append(", department=").append(department != null ? department : "")
-                .append(", institute=").append(institute != null ? institute : "")
-                .append('}').toString( );
+        return "Position {\n" +
+                "\tpositionName = '" + (positionName != null ? positionName : "") + '\'' + '\n' +
+                "\tdepartment = " + (department != null ? department : "") + '\n' +
+                "\tinstitute = " + (institute != null ? institute : "") + '\n' +
+                '}';
     }
 }

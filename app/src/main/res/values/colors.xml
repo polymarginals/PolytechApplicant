@@ -13,6 +13,54 @@
     <color name="colorBlack">#000000</color>
     <color name="colorDark">#263238</color>
     <color name="colorTransparent">#00000000</color>
+    <color name="colorLightSalad">#C8E6C9</color>
 
     <color name="colorBackground">@color/colorGrey</color>
+
+    <!-- Institute of Computer Science and Technology - ИКНТ - Институт компьютерных наук
+        и технологий -->
+    <color name="colorIcstPrimary">#419B5F</color>
+    <color name="colorIcstLight">#B3D6BD</color>
+    <!-- Institute of Humanities - ГИ - Гуманитарный институт -->
+    <color name="colorIhPrimary">#FE9920</color>
+    <color name="colorIhLight">#FED999</color>
+    <!-- Institute of Civil Engineering - ИСИ - Инженерно-строительный институт -->
+    <color name="colorIcePrimary">#28777E</color>
+    <color name="colorIceLight">#B2CBCE</color>
+    <!-- Institute of Industrial Economics and Management - ИПМЭиТ - Институт промышленного
+        менеджемента, экономики и торговли -->
+    <color name="colorIiemPrimary">#313595</color>
+    <color name="colorIiemLight">#A5B2D5</color>
+    <!-- Institute of Physics, Nanotechnology and Telecommunications - ИФНиТ - Институт физики,
+        нанотехнологий и телекоммуникаций -->
+    <color name="colorIpnthPrimary">#4EAACE</color>
+    <color name="colorIpntLight">#CCECF4</color>
+    <!-- Institute of Military Engineering and Safety Research - ИВТОБ - Институт
+        военно-технического образования и безопасности -->
+    <color name="colorImesrPrimary">#8C9A4A</color>
+    <color name="colorImesrLight">#D8D8B2</color>
+    <!-- Institute of Applied Mathematics and Mechanics - ИПММ - Институт прикладной
+        математики и механики -->
+    <color name="colorIammPrimary">#184180</color>
+    <color name="colorIammLight">#80B1D3</color>
+    <!-- Institute of Energy and Transport Systems - ИЭТС - Институт энергетики и
+        транспортных систем -->
+    <color name="colorIetsPrimary">#FF5A0B</color>
+    <color name="colorIetsLight">#FDC086</color>
+    <!-- Institute of Physical Education, Sport and Tourism - ИФКСТ - Институт
+        физической культуры, спорта и туризма -->
+    <color name="colorIpestPrimary">#66B934</color>
+    <color name="colorIpestLight">#E6F5B0</color>
+    <!-- Institute of International Educational Programs - ИМОП - Институт международных
+        образовательных программ -->
+    <color name="colorIiepPrimary">#990000</color>
+    <color name="colorIiepLight">#FF3333</color>
+    <!-- Institute of Metallurgy, Mechanical Engineering and Transport - ИММТ - Институт
+        металлургии, машиностроения и транспорта -->
+    <color name="colorImmetPrimary">#7A808B</color>
+    <color name="colorImmetLight">#CBD5E8</color>
+    <!-- Institute of Advanced Manufacturing Technologies - ИППТ - Институт передовых
+        производственных технологий -->
+    <color name="colorIamtPrimary">#DB3519</color>
+    <color name="colorIamtLight">#F7C1AF</color>
 </resources>

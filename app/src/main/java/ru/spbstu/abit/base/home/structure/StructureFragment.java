@@ -81,7 +81,10 @@ public class StructureFragment extends HomeFragment {
     }
 
     private void initToolbar ( ) {
-        ((MainActivity) mActivity).setToolbarTitle(R.string.title_structure);
+        ((MainActivity) mActivity).setToolbarSpannableTitle(
+                mActivity.getString(R.string.title_structure),
+                R.color.colorDark
+        );
     }
 
     private void initViews ( ) {
@@ -90,151 +93,73 @@ public class StructureFragment extends HomeFragment {
 
     private void setContent ( ) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
+        ArrayList<StudyProgram> defaultStudyProgramsList = new ArrayList<StudyProgram>() {{
+            add(new StudyProgram(
+                    "01.03.02",
+                    "MATHEMATICS AND MECHANICS",
+                    "Mathematical Modeling",
+                    184800, 201600));
+            add(new StudyProgram(
+                    "01.03.02",
+                    "MATHEMATICS AND MECHANICS",
+                    "Software Engineering",
+                    184800, 201600));
+            add(new StudyProgram(
+                    "01.03.02",
+                    "MATHEMATICS AND MECHANICS",
+                    "Mathematics and Informatics in Economics",
+                    184800, 201600));
+            add(new StudyProgram(
+                    "01.03.02",
+                    "MATHEMATICS AND MECHANICS",
+                    "Bioinformatics",
+                    184800, 201600));
+        }};
 
         ArrayList<Institute> institutes = new ArrayList<>();
         institutes.add(new Institute(
                 mActivity.getString(R.string.institutes_array_item_01),
-                new ArrayList< StudyProgram >() {{
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Mathematical Modeling",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Software Engineering",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Mathematics and Informatics in Economics",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Bioinformatics",
-                            184800, 201600));
-                }},
+                defaultStudyProgramsList,
                 null,
                 null,
-                R.color.colorPrimary,
+                R.color.colorIhPrimary,
+                R.color.colorIhLight,
                 "https://hum.spbstu.ru/"
         ));
         institutes.add(new Institute(
                 mActivity.getString(R.string.institutes_array_item_02),
-                new ArrayList< StudyProgram >() {{
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Mathematical Modeling",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Software Engineering",
-                            184800, 201600));
-                }},
+                defaultStudyProgramsList,
                 null,
                 null,
-                R.color.colorPrimaryDark,
+                R.color.colorIcstPrimary,
+                R.color.colorIcstLight,
                 "https://icst.spbstu.ru/"
         ));
         institutes.add(new Institute(
                 mActivity.getString(R.string.institutes_array_item_03),
-                new ArrayList< StudyProgram >() {{
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Mathematical Modeling",
-                            184800, 201600));
-                }},
+                defaultStudyProgramsList,
                 null,
                 null,
-                R.color.colorBlack,
+                R.color.colorIammPrimary,
+                R.color.colorIammLight,
                 "https://iamm.spbstu.ru/"
         ));
         institutes.add(new Institute(
                 mActivity.getString(R.string.institutes_array_item_04),
-                new ArrayList< StudyProgram >() {{
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Mathematical Modeling",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Software Engineering",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Mathematics and Informatics in Economics",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Bioinformatics",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Mathematical Modeling",
-                            184800, 201600));
-                }},
+                defaultStudyProgramsList,
                 null,
                 null,
-                R.color.colorDarkGrey,
+                R.color.colorIetsPrimary,
+                R.color.colorIetsLight,
                 "https://ice.spbstu.ru/"
         ));
         institutes.add(new Institute(
                 mActivity.getString(R.string.institutes_array_item_05),
-                new ArrayList< StudyProgram >() {{
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Mathematical Modeling",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Software Engineering",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Mathematics and Informatics in Economics",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Bioinformatics",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Mathematical Modeling",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Software Engineering",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Mathematics and Informatics in Economics",
-                            184800, 201600));
-                    add(new StudyProgram(
-                            "01.03.02",
-                            "MATHEMATICS AND MECHANICS",
-                            "Bioinformatics",
-                            184800, 201600));
-                }},
+                defaultStudyProgramsList,
                 null,
                 null,
-                R.color.colorPrimary,
+                R.color.colorIcePrimary,
+                R.color.colorIceLight,
                 "https://immit.spbstu.ru/"
         ));
 
@@ -248,6 +173,6 @@ public class StructureFragment extends HomeFragment {
     }
 
     public interface OnStructureInstituteInteractionListener {
-        void onListFragmentInteraction (Institute institute);
+        void onStructureInstituteSelected(Institute institute);
     }
 }

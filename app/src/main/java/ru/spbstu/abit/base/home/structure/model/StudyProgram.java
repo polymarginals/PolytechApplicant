@@ -66,13 +66,12 @@ public class StudyProgram {
     @NonNull
     @Override
     public String toString ( ) {
-        return new StringBuilder( )
-                .append("StudyProgram{")
-                .append("code=").append(code != null ? code : "")
-                .append(", fieldOfStudy='").append(fieldOfStudy != null ? fieldOfStudy : "").append('\'')
-                .append(", name='").append(name != null ? name : "").append('\'')
-                .append(", priceBaseRur=").append(priceBaseRur)
-                .append(", priceOthersRur=").append(priceOthersRur)
-                .append('}').toString( );
+        return "StudyProgram {\n" +
+                "\tcode = " + (code != null ? code : "") + '\n' +
+                "\tfieldOfStudy = '" + (fieldOfStudy != null ? fieldOfStudy : "") + '\'' + '\n' +
+                "\tname = '" + (name != null ? name : "") + '\'' + '\n' +
+                "\tpriceBaseRur = " + priceBaseRur + '\n' +
+                "\tpriceOthersRur = " + priceOthersRur + '\n' +
+                '}';
     }
 }

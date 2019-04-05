@@ -47,7 +47,24 @@
     </string-array>
 
     <string-array name="education_forms_array">
+        <item>@string/full_time_education_form</item>
+        <item>@string/extramural_education_form</item>
+        <item>@string/part_time_education_form</item>
+    </string-array>
 
+    <string-array name="menu_entrance_array">
+        <item>@string/menu_entrance_array_item_01</item>
+        <item>@string/menu_entrance_array_item_02</item>
+        <item>@string/menu_entrance_array_item_03</item>
+        <item>@string/menu_entrance_array_item_04</item>
+        <item>@string/menu_entrance_array_item_05</item>
+    </string-array>
+
+    <string-array name="institute_content_menu_array">
+        <item>@string/institute_content_menu_array_item_01</item>
+        <item>@string/institute_content_menu_array_item_02</item>
+        <item>@string/institute_content_menu_array_item_03</item>
+        <item>@string/institute_content_menu_array_item_04</item>
     </string-array>
 
 </resources>

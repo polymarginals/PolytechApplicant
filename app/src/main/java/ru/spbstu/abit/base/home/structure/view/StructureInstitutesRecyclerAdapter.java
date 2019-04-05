@@ -1,7 +1,6 @@
 package ru.spbstu.abit.base.home.structure.view;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +15,8 @@ import java.util.List;
 import ru.spbstu.abit.R;
 import ru.spbstu.abit.base.home.structure.StructureFragment;
 import ru.spbstu.abit.base.home.structure.model.Institute;
+
+import static ru.spbstu.abit.core.App.getColorId;
 
 public class StructureInstitutesRecyclerAdapter
         extends RecyclerView.Adapter< StructureInstitutesRecyclerAdapter.ViewHolder > {
@@ -64,17 +65,13 @@ public class StructureInstitutesRecyclerAdapter
                         institute.getStudyPrograms().size()
                 )
         );
-        if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ) {
-            holder.mBackgroundImage.setBackgroundColor(mContext.getColor(institute.getBackgroundId()));
-        } else {
-            holder.mBackgroundImage.setBackgroundColor(mContext.getResources().getColor(institute.getBackgroundId()));
-        }
+        holder.mBackgroundImage.setBackgroundColor(getColorId(institute.getColorId()));
 
         holder.mHolderView.setOnClickListener(new View.OnClickListener( ) {
             @Override
             public void onClick (View v) {
                 if ( null != mListener ) {
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onStructureInstituteSelected(holder.mItem);
                 }
             }
         });
@@ -104,12 +101,12 @@ public class StructureInstitutesRecyclerAdapter
         @NonNull
         @Override
         public String toString ( ) {
-            return "ViewHolder{" +
-                    "mHolderView=" + mHolderView +
-                    ", mInstituteNameTextView=" + mInstituteNameTextView +
-                    ", mStudyProgramsTextView=" + mStudyProgramsTextView +
-                    ", mBackgroundImage=" + mBackgroundImage +
-                    ", mItem=" + mItem +
+            return "ViewHolder {\n" +
+                    "\tmHolderView = " + (mHolderView != null ? mHolderView : "") + '\n' +
+                    "\tmInstituteNameTextView = " + (mInstituteNameTextView != null ? mInstituteNameTextView : "") + '\n' +
+                    "\tmStudyProgramsTextView = " + (mStudyProgramsTextView != null ? mStudyProgramsTextView : "") + '\n' +
+                    "\tmBackgroundImage = " + (mBackgroundImage != null ? mBackgroundImage : "") + '\n' +
+                    "\tmItem = " + (mItem != null ? mItem : "") + '\n' +
                     '}';
         }
     }

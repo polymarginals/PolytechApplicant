@@ -9,7 +9,8 @@ public class Institute {
     private ArrayList<StudyProgram> studyPrograms;
     private ArrayList<Department> departments;
     private ArrayList<Person> persons;
-    private int backgroundId;
+    private int colorId;
+    private int colorLightId;
     private String url;
 
     public Institute (
@@ -17,14 +18,16 @@ public class Institute {
             ArrayList< StudyProgram > studyPrograms,
             ArrayList< Department > departments,
             ArrayList< Person > persons,
-            int backgroundId,
+            int colorId,
+            int colorLightId,
             String url
     ) {
         this.name = name;
         this.studyPrograms = studyPrograms;
         this.departments = departments;
         this.persons = persons;
-        this.backgroundId = backgroundId;
+        this.colorId = colorId;
+        this.colorLightId = colorLightId;
         this.url = url;
     }
 
@@ -60,12 +63,20 @@ public class Institute {
         this.persons = persons;
     }
 
-    public int getBackgroundId ( ) {
-        return backgroundId;
+    public int getColorId( ) {
+        return colorId;
     }
 
-    public void setBackgroundId (int backgroundId) {
-        this.backgroundId = backgroundId;
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
+    }
+
+    public int getColorLightId() {
+        return colorLightId;
+    }
+
+    public void setColorLightId(int colorLightId) {
+        this.colorLightId = colorLightId;
     }
 
     public String getUrl ( ) {
@@ -79,14 +90,14 @@ public class Institute {
     @NonNull
     @Override
     public String toString ( ) {
-        return new StringBuilder( )
-                .append("Institute{")
-                .append("name=").append(name != null ? name : "")
-                .append(", studyPrograms=").append(studyPrograms != null ? studyPrograms.toString( ) : "")
-                .append(", departments=").append(departments != null ? departments.toString( ) : "")
-                .append(", persons=").append(persons != null ? persons.toString() : "")
-                .append(", backgroundId=").append(backgroundId)
-                .append(", url='").append(url != null ? url : "").append('\'')
-                .append('}').toString( );
+        return "Institute {\n" +
+                "\tname = " + (name != null ? name : "") + '\n' +
+                "\tstudyPrograms = " + (studyPrograms != null ? studyPrograms.toString() : "") + '\n' +
+                "\tdepartments = " + (departments != null ? departments.toString() : "") + '\n' +
+                "\tpersons = " + (persons != null ? persons.toString() : "") + '\n' +
+                "\tcolorId = " + colorId + '\n' +
+                "\tcolorLightId = " + colorLightId + '\n' +
+                "\turl = '" + (url != null ? url : "") + '\'' + '\n' +
+                '}';
     }
 }
