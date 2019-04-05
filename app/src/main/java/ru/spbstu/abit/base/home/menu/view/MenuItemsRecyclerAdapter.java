@@ -1,6 +1,5 @@
 package ru.spbstu.abit.base.home.menu.view;
 
-import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -20,8 +19,6 @@ import ru.spbstu.abit.base.home.menu.model.MenuListItem;
 import static ru.spbstu.abit.core.App.getColorId;
 
 public class MenuItemsRecyclerAdapter extends RecyclerView.Adapter< MenuItemsRecyclerAdapter.ViewHolder > {
-
-    private Context mContext;
 
     private final List<MenuListItem> mMenuListItems;
     private final MenuFragment.OnMenuItemInteractionListener mListener;
@@ -46,8 +43,6 @@ public class MenuItemsRecyclerAdapter extends RecyclerView.Adapter< MenuItemsRec
                 false
         );
 
-        mContext = parent.getContext();
-
         return new MenuItemsRecyclerAdapter.ViewHolder(view);
     }
 
@@ -57,6 +52,11 @@ public class MenuItemsRecyclerAdapter extends RecyclerView.Adapter< MenuItemsRec
             int position
     ) {
         MenuListItem item = mMenuListItems.get(position);
+
+        if (position == mMenuListItems.size() - 1) {
+            holder.mSeparator.setVisibility(View.GONE);
+        }
+
         holder.mItem = item;
         holder.mTitle.setText(item.getTitle());
         holder.mIcon.setColorFilter(getColorId(item.getIconColorId()));
@@ -84,6 +84,7 @@ public class MenuItemsRecyclerAdapter extends RecyclerView.Adapter< MenuItemsRec
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         final View mView;
+        final View mSeparator;
         final TextView mTitle;
         final ConstraintLayout mIconHolder;
         final ImageView mIcon;
@@ -93,6 +94,7 @@ public class MenuItemsRecyclerAdapter extends RecyclerView.Adapter< MenuItemsRec
         ViewHolder (View view) {
             super(view);
             mView = view;
+            mSeparator = view.findViewById(R.id.menu_item_separator);
             mTitle = view.findViewById(R.id.menu_item_title_text);
             mIconHolder = view.findViewById(R.id.menu_item_icon_holder);
             mIcon = view.findViewById(R.id.menu_item_icon_image);

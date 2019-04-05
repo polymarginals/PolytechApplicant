@@ -21,6 +21,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 
@@ -58,6 +59,9 @@ public class MainActivity
     private static final boolean APPBAR_EXPANDED              = true;
     public static final boolean ACTIVE_TOOLBAR_BACK_BUTTON   = true;
     public static final boolean INACTIVE_TOOLBAR_BACK_BUTTON = false;
+
+    private Fade mEnterTransition = new Fade();
+    private Fade mExitTransition = new Fade();
 
     private AppBarLayout            mAppBarLayout;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
@@ -103,6 +107,7 @@ public class MainActivity
         if (savedInstanceState == null) {
             Fragment newFragment = TimelineFragment.newInstance();
             getSupportFragmentManager().beginTransaction()
+                    .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                     .replace(R.id.fragment_holder, newFragment)
                     .commitAllowingStateLoss();
         }
@@ -129,6 +134,9 @@ public class MainActivity
         mCollapsingToolbarLayout.setCollapsedTitleTypeface(ResourcesCompat.getFont(this, R.font.pt_sans_bold));
         mCollapsingToolbarLayout.setExpandedTitleTypeface(ResourcesCompat.getFont(this, R.font.pt_sans_bold));
         setToolbarTitleColor(R.color.colorDark);
+
+        mEnterTransition.setDuration(FADE_DEFAULT_TIME);
+        mExitTransition.setDuration(FADE_DEFAULT_TIME);
     }
 
     private void setToolbarTitleColor(int colorId) {
@@ -149,7 +157,13 @@ public class MainActivity
     private void switchToFragment(int id) {
         Fragment currentFragment = mFragmentManager.findFragmentById(R.id.fragment_holder);
         if (currentFragment == null) {
-            Log.e(TAG, "Error: current Fragment is null in FragmentManager");
+            Log.e(TAG, getString(R.string.error_fragment_is_null));
+            Toast.makeText(
+                    this,
+                    getString(R.string.error_fragment_is_null),
+                    Toast.LENGTH_LONG
+            ).show();
+
             return;
         }
         Fragment nextFragment = TimelineFragment.newInstance();
@@ -165,6 +179,7 @@ public class MainActivity
             case STRUCTURE_FRAGMENT:
                 if (currentFragment instanceof StructureFragment) {
                     mAppBarLayout.setExpanded(APPBAR_EXPANDED);
+                    return;
                 }
                 nextFragment = StructureFragment.newInstance();
                 break;
@@ -178,19 +193,13 @@ public class MainActivity
 
         mAppBarLayout.setExpanded(APPBAR_EXPANDED);
 
-        // Exit transition animation for current Fragment
-        Fade exitFade = new Fade();
-        exitFade.setDuration(FADE_DEFAULT_TIME);
-        currentFragment.setExitTransition(exitFade);
-
-        // Enter transition animation for next Fragment
-        Fade enterFade = new Fade();
-        enterFade.setDuration(FADE_DEFAULT_TIME);
-        nextFragment.setEnterTransition(enterFade);
+        //currentFragment.setExitTransition(mExitTransition);
+        //nextFragment.setEnterTransition(mEnterTransition);
 
         clearFragments();
 
         mFragmentManager.beginTransaction()
+                //.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                 .replace(R.id.fragment_holder, nextFragment)
                 .commitAllowingStateLoss();
     }
@@ -198,7 +207,13 @@ public class MainActivity
     private void addNewFragment(int id, Bundle bundle) {
         Fragment currentFragment = mFragmentManager.findFragmentById(R.id.fragment_holder);
         if (currentFragment == null) {
-            Log.e(TAG, "Error: current Fragment is null in FragmentManager");
+            Log.e(TAG, getString(R.string.error_fragment_is_null));
+            Toast.makeText(
+                    this,
+                    getString(R.string.error_fragment_is_null),
+                    Toast.LENGTH_LONG
+            ).show();
+
             return;
         }
         Fragment nextFragment = TimelineFragment.newInstance();
@@ -224,19 +239,13 @@ public class MainActivity
             nextFragment.setArguments(bundle);
         }
 
-        // Exit transition animation for current Fragment
-        Fade exitFade = new Fade();
-        exitFade.setDuration(FADE_DEFAULT_TIME);
-        currentFragment.setExitTransition(exitFade);
-
-        // Enter transition animation for next Fragment
-        Fade enterFade = new Fade();
-        enterFade.setDuration(FADE_DEFAULT_TIME);
-        nextFragment.setEnterTransition(enterFade);
+        //currentFragment.setExitTransition(mExitTransition);
+        //nextFragment.setEnterTransition(mEnterTransition);
 
         mFragmentManager.beginTransaction()
                 .hide(currentFragment)
                 .add(R.id.fragment_holder, nextFragment)
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                 .addToBackStack(null)
                 .commitAllowingStateLoss();
     }
@@ -353,6 +362,5 @@ public class MainActivity
                 R.color.colorDark
         );
         toggleToolbarBackButton(INACTIVE_TOOLBAR_BACK_BUTTON);
-        mAppBarLayout.setExpanded(APPBAR_EXPANDED);
     }
 }

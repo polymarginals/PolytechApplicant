@@ -56,4 +56,5 @@
     <string name="image_description_institute_background">Institute form style background</string>
     <string name="image_description_menu_item_icon">Menu item icon</string>
     <string name="image_description_technical_support_image">Technical support image</string>
+    <string name="error_fragment_is_null">Error: current Fragment is null in FragmentManager</string>
 </resources>
