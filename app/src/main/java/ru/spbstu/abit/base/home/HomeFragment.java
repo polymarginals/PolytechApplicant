@@ -6,13 +6,22 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 public abstract class HomeFragment extends Fragment  {
+
+    protected abstract void parseArguments();
+
+    protected abstract void initViews();
+
+    protected abstract void initToolbar();
+
+    protected abstract void setContent();
+
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
 
-        // HW layer support only exists on API 11+
         if (animation == null && nextAnim != 0) {
             animation = AnimationUtils.loadAnimation(getActivity(), nextAnim);
         }
+
         final View view = getView();
         if (view == null) {
             return animation;

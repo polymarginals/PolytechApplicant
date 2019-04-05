@@ -30,6 +30,8 @@ public class StructureFragment extends HomeFragment {
     private View mView;
     private RecyclerView mRecyclerView;
 
+    private ArrayList<Institute> mInstitutes;
+
     public StructureFragment ( ) {}
 
     public static StructureFragment newInstance ( ) {
@@ -73,6 +75,7 @@ public class StructureFragment extends HomeFragment {
                 false
         );
 
+        parseArguments();
         initViews();
         initToolbar();
         setContent();
@@ -80,20 +83,152 @@ public class StructureFragment extends HomeFragment {
         return mView;
     }
 
-    private void initToolbar ( ) {
+    @Override
+    protected void parseArguments() { }
+
+    @Override
+    protected void initViews ( ) {
+        mRecyclerView = mView.findViewById(R.id.institutes_recycler);
+    }
+
+    @Override
+    protected void initToolbar() {
         ((MainActivity) mActivity).setToolbarSpannableTitle(
-                mActivity.getString(R.string.title_structure),
+                mActivity.getString(R.string.titles_array_item_04),
                 R.color.colorDark
         );
     }
 
-    private void initViews ( ) {
-        mRecyclerView = mView.findViewById(R.id.institutes_recycler);
+    @Override
+    protected void setContent ( ) {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
+
+        if (mInstitutes == null || mInstitutes.isEmpty()) {
+            mInstitutes = getDefaultStructureInstitutesList();
+        }
+
+        mRecyclerView.setAdapter(new StructureInstitutesRecyclerAdapter(mInstitutes, mListener));
     }
 
-    private void setContent ( ) {
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        ArrayList<StudyProgram> defaultStudyProgramsList = new ArrayList<StudyProgram>() {{
+    private ArrayList<Institute> getDefaultStructureInstitutesList() {
+        ArrayList<StudyProgram> studyPrograms = getDefaultStudyProgramsList();
+        ArrayList<Institute> institutes = new ArrayList<>();
+        institutes.add(new Institute(
+                mActivity.getString(R.string.institutes_array_item_01),
+                studyPrograms,
+                null,
+                null,
+                R.drawable.ih_pattern,
+                R.color.colorIhPrimary,
+                R.color.colorIhLight,
+                "https://hum.spbstu.ru/"
+        ));
+        institutes.add(new Institute(
+                mActivity.getString(R.string.institutes_array_item_02),
+                studyPrograms,
+                null,
+                null,
+                R.drawable.icst_pattern,
+                R.color.colorIcstPrimary,
+                R.color.colorIcstLight,
+                "https://icst.spbstu.ru/"
+        ));
+        institutes.add(new Institute(
+                mActivity.getString(R.string.institutes_array_item_03),
+                studyPrograms,
+                null,
+                null,
+                R.drawable.iamm_pattern,
+                R.color.colorIammPrimary,
+                R.color.colorIammLight,
+                "https://iamm.spbstu.ru/"
+        ));
+        institutes.add(new Institute(
+                mActivity.getString(R.string.institutes_array_item_04),
+                studyPrograms,
+                null,
+                null,
+                R.drawable.iets_pattern,
+                R.color.colorIetsPrimary,
+                R.color.colorIetsLight,
+                "https://ice.spbstu.ru/"
+        ));
+        institutes.add(new Institute(
+                mActivity.getString(R.string.institutes_array_item_05),
+                studyPrograms,
+                null,
+                null,
+                R.drawable.ice_pattern,
+                R.color.colorIcePrimary,
+                R.color.colorIceLight,
+                "https://immit.spbstu.ru/"
+        ));
+        institutes.add(new Institute(
+                mActivity.getString(R.string.institutes_array_item_06),
+                studyPrograms,
+                null,
+                null,
+                R.drawable.immet_pattern,
+                R.color.colorImmetPrimary,
+                R.color.colorImmetPrimary,
+                "https://iamm.spbstu.ru/"
+        ));
+        institutes.add(new Institute(
+                mActivity.getString(R.string.institutes_array_item_07),
+                studyPrograms,
+                null,
+                null,
+                R.drawable.ipnt_pattern,
+                R.color.colorIpntPrimary,
+                R.color.colorIpntLight,
+                "https://ice.spbstu.ru/"
+        ));
+        institutes.add(new Institute(
+                mActivity.getString(R.string.institutes_array_item_08),
+                studyPrograms,
+                null,
+                null,
+                R.drawable.iiem_pattern,
+                R.color.colorIiemPrimary,
+                R.color.colorIiemLight,
+                "https://immit.spbstu.ru/"
+        ));
+        institutes.add(new Institute(
+                mActivity.getString(R.string.institutes_array_item_09),
+                studyPrograms,
+                null,
+                null,
+                R.drawable.icst_pattern,
+                R.color.colorIcstPrimary,
+                R.color.colorIcstLight,
+                "https://iamm.spbstu.ru/"
+        ));
+        institutes.add(new Institute(
+                mActivity.getString(R.string.institutes_array_item_10),
+                studyPrograms,
+                null,
+                null,
+                R.drawable.iamt_pattern,
+                R.color.colorIamtPrimary,
+                R.color.colorIamtLight,
+                "https://ice.spbstu.ru/"
+        ));
+        institutes.add(new Institute(
+                mActivity.getString(R.string.institutes_array_item_11),
+                studyPrograms,
+                null,
+                null,
+                R.drawable.ipest_pattern,
+                R.color.colorIpestPrimary,
+                R.color.colorIpestLight,
+                "https://immit.spbstu.ru/"
+        ));
+
+        return institutes;
+    }
+
+    private ArrayList<StudyProgram> getDefaultStudyProgramsList() {
+        return new ArrayList<StudyProgram>() {{
             add(new StudyProgram(
                     "01.03.02",
                     "MATHEMATICS AND MECHANICS",
@@ -115,55 +250,6 @@ public class StructureFragment extends HomeFragment {
                     "Bioinformatics",
                     184800, 201600));
         }};
-
-        ArrayList<Institute> institutes = new ArrayList<>();
-        institutes.add(new Institute(
-                mActivity.getString(R.string.institutes_array_item_01),
-                defaultStudyProgramsList,
-                null,
-                null,
-                R.color.colorIhPrimary,
-                R.color.colorIhLight,
-                "https://hum.spbstu.ru/"
-        ));
-        institutes.add(new Institute(
-                mActivity.getString(R.string.institutes_array_item_02),
-                defaultStudyProgramsList,
-                null,
-                null,
-                R.color.colorIcstPrimary,
-                R.color.colorIcstLight,
-                "https://icst.spbstu.ru/"
-        ));
-        institutes.add(new Institute(
-                mActivity.getString(R.string.institutes_array_item_03),
-                defaultStudyProgramsList,
-                null,
-                null,
-                R.color.colorIammPrimary,
-                R.color.colorIammLight,
-                "https://iamm.spbstu.ru/"
-        ));
-        institutes.add(new Institute(
-                mActivity.getString(R.string.institutes_array_item_04),
-                defaultStudyProgramsList,
-                null,
-                null,
-                R.color.colorIetsPrimary,
-                R.color.colorIetsLight,
-                "https://ice.spbstu.ru/"
-        ));
-        institutes.add(new Institute(
-                mActivity.getString(R.string.institutes_array_item_05),
-                defaultStudyProgramsList,
-                null,
-                null,
-                R.color.colorIcePrimary,
-                R.color.colorIceLight,
-                "https://immit.spbstu.ru/"
-        ));
-
-        mRecyclerView.setAdapter(new StructureInstitutesRecyclerAdapter(institutes, mListener));
     }
 
     @Override

@@ -1,6 +1,10 @@
 package ru.spbstu.abit.base.home.structure.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -15,8 +19,6 @@ import java.util.List;
 import ru.spbstu.abit.R;
 import ru.spbstu.abit.base.home.structure.StructureFragment;
 import ru.spbstu.abit.base.home.structure.model.Institute;
-
-import static ru.spbstu.abit.core.App.getColorId;
 
 public class StructureInstitutesRecyclerAdapter
         extends RecyclerView.Adapter< StructureInstitutesRecyclerAdapter.ViewHolder > {
@@ -65,7 +67,10 @@ public class StructureInstitutesRecyclerAdapter
                         institute.getStudyPrograms().size()
                 )
         );
-        holder.mBackgroundImage.setBackgroundColor(getColorId(institute.getColorId()));
+        Bitmap bmp = BitmapFactory.decodeResource(mContext.getResources(), institute.getBackgroundDrawableId());
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(mContext.getResources(), bmp);
+        bitmapDrawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
+        holder.mBackgroundImage.setBackground(bitmapDrawable);
 
         holder.mHolderView.setOnClickListener(new View.OnClickListener( ) {
             @Override

@@ -89,7 +89,8 @@ public class MenuFragment extends HomeFragment {
         return mView;
     }
 
-    private void parseArguments() {
+    @Override
+    protected void parseArguments() {
         if (getArguments() != null) {
             if (getArguments().containsKey(ARGUMENT_LIST)) {
                 mMenuListItems = getArguments().getParcelableArrayList(ARGUMENT_LIST);
@@ -103,13 +104,15 @@ public class MenuFragment extends HomeFragment {
         }
     }
 
-    private void initViews ( ) {
+    @Override
+    protected void initViews ( ) {
         mRecyclerView = mView.findViewById(R.id.menu_recycler);
     }
 
-    private void initToolbar ( ) {
+    @Override
+    protected void initToolbar ( ) {
         if (mMenuTitle == null) {
-            mMenuTitle = getString(R.string.title_menu);
+            mMenuTitle = getString(R.string.titles_array_item_02);
         }
         if (mMenuListItems != null) {
             ((MainActivity) mActivity).toggleToolbarBackButton(MainActivity.ACTIVE_TOOLBAR_BACK_BUTTON);
@@ -120,10 +123,11 @@ public class MenuFragment extends HomeFragment {
         );
     }
 
-    private void setContent ( ) {
+    @Override
+    protected void setContent ( ) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
 
-        if (mMenuListItems == null) {
+        if (mMenuListItems == null || mMenuListItems.isEmpty()) {
             mMenuListItems = getDefaultMenuEntranceList();
         }
 

@@ -9,6 +9,7 @@ public class Institute {
     private ArrayList<StudyProgram> studyPrograms;
     private ArrayList<Department> departments;
     private ArrayList<Person> persons;
+    private int backgroundDrawableId;
     private int colorId;
     private int colorLightId;
     private String url;
@@ -18,6 +19,7 @@ public class Institute {
             ArrayList< StudyProgram > studyPrograms,
             ArrayList< Department > departments,
             ArrayList< Person > persons,
+            int backgroundDrawableId,
             int colorId,
             int colorLightId,
             String url
@@ -26,6 +28,7 @@ public class Institute {
         this.studyPrograms = studyPrograms;
         this.departments = departments;
         this.persons = persons;
+        this.backgroundDrawableId = backgroundDrawableId;
         this.colorId = colorId;
         this.colorLightId = colorLightId;
         this.url = url;
@@ -63,6 +66,14 @@ public class Institute {
         this.persons = persons;
     }
 
+    public int getBackgroundDrawableId() {
+        return backgroundDrawableId;
+    }
+
+    public void setBackgroundDrawableId(int backgroundDrawableId) {
+        this.backgroundDrawableId = backgroundDrawableId;
+    }
+
     public int getColorId( ) {
         return colorId;
     }
@@ -95,6 +106,7 @@ public class Institute {
                 "\tstudyPrograms = " + (studyPrograms != null ? studyPrograms.toString() : "") + '\n' +
                 "\tdepartments = " + (departments != null ? departments.toString() : "") + '\n' +
                 "\tpersons = " + (persons != null ? persons.toString() : "") + '\n' +
+                "\tbackgroundDrawableId = " + backgroundDrawableId + '\n' +
                 "\tcolorId = " + colorId + '\n' +
                 "\tcolorLightId = " + colorLightId + '\n' +
                 "\turl = '" + (url != null ? url : "") + '\'' + '\n' +

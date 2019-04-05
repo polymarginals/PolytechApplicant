@@ -29,6 +29,8 @@ public class TimelineFragment extends HomeFragment {
     private View mView;
     private RecyclerView mRecyclerView;
 
+    private ArrayList<TimelineEvent> mTimelineEvents;
+
     public TimelineFragment ( ) {}
 
     public static TimelineFragment newInstance ( ) {
@@ -72,6 +74,7 @@ public class TimelineFragment extends HomeFragment {
                 false
         );
 
+        parseArguments();
         initViews();
         initToolbar();
         setContent();
@@ -79,79 +82,93 @@ public class TimelineFragment extends HomeFragment {
         return mView;
     }
 
-    private void initViews ( ) {
+    @Override
+    protected void parseArguments() { }
+
+    @Override
+    protected void initViews ( ) {
         mRecyclerView = mView.findViewById(R.id.events_recycler);
     }
 
-    private void initToolbar ( ) {
+    @Override
+    protected void initToolbar ( ) {
         ((MainActivity) mActivity).setToolbarSpannableTitle(
-                mActivity.getString(R.string.title_timeline),
+                mActivity.getString(R.string.titles_array_item_01),
                 R.color.colorDark
         );
     }
 
-    private void setContent ( ) {
+    @Override
+    protected void setContent ( ) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
 
+        if (mTimelineEvents == null || mTimelineEvents.isEmpty()) {
+            mTimelineEvents = getDefaultEventsList();
+        }
+
+        mRecyclerView.setAdapter(new TimelineEventsRecyclerAdapter(mTimelineEvents, mListener));
+    }
+
+    private ArrayList<TimelineEvent> getDefaultEventsList() {
         ArrayList<TimelineEvent> events = new ArrayList<>();
         events.add(new TimelineEvent(
-                mActivity.getString(R.string.full_time_education_form) + " " + mActivity.getString(R.string.part_time_education_form),
-                mActivity.getString(R.string.government_funded_education),
+                mActivity.getString(R.string.educations_form_array_item_01) + " " + mActivity.getString(R.string.educations_form_array_item_03),
+                mActivity.getString(R.string.funding_forms_array_item_01),
                 "Окончание приёма документов для поступающих по ЕГЭ. Окончание проведения вступительных экзаменов",
                 mActivity.getString(R.string.months_array_item_07),
                 26,
                 false
         ));
         events.add(new TimelineEvent(
-                mActivity.getString(R.string.full_time_education_form) + " " + mActivity.getString(R.string.part_time_education_form),
-                mActivity.getString(R.string.government_funded_education),
+                mActivity.getString(R.string.educations_form_array_item_01) + " " + mActivity.getString(R.string.educations_form_array_item_03),
+                mActivity.getString(R.string.funding_forms_array_item_01),
                 "Завершение приёма заявлений о согласии на зачисление (по квотам и без вступительных испытаний",
                 mActivity.getString(R.string.months_array_item_07),
                 28,
                 false
         ));
         events.add(new TimelineEvent(
-                mActivity.getString(R.string.full_time_education_form) + " " + mActivity.getString(R.string.part_time_education_form),
-                mActivity.getString(R.string.government_funded_education),
+                mActivity.getString(R.string.educations_form_array_item_01) + " " + mActivity.getString(R.string.educations_form_array_item_03),
+                mActivity.getString(R.string.funding_forms_array_item_01),
                 "Приказ о зачислении лиц, подавших заявление о согласии на зачисление (по квотам)",
                 mActivity.getString(R.string.months_array_item_07),
                 29,
                 false
         ));
         events.add(new TimelineEvent(
-                mActivity.getString(R.string.full_time_education_form) + " " + mActivity.getString(R.string.part_time_education_form),
-                mActivity.getString(R.string.government_funded_education),
+                mActivity.getString(R.string.educations_form_array_item_01) + " " + mActivity.getString(R.string.educations_form_array_item_03),
+                mActivity.getString(R.string.funding_forms_array_item_01),
                 "Приказ о зачислении лиц, подавших заявление о согласии на зачисление (по квотам)",
                 mActivity.getString(R.string.months_array_item_07),
                 29,
                 false
         ));
         events.add(new TimelineEvent(
-                mActivity.getString(R.string.full_time_education_form) + " " + mActivity.getString(R.string.part_time_education_form),
-                mActivity.getString(R.string.government_funded_education),
+                mActivity.getString(R.string.educations_form_array_item_01) + " " + mActivity.getString(R.string.educations_form_array_item_03),
+                mActivity.getString(R.string.funding_forms_array_item_01),
                 "Приказ о зачислении лиц, подавших заявление о согласии на зачисление (по квотам)",
                 mActivity.getString(R.string.months_array_item_07),
                 29,
                 false
         ));
         events.add(new TimelineEvent(
-                mActivity.getString(R.string.full_time_education_form) + " " + mActivity.getString(R.string.part_time_education_form),
-                mActivity.getString(R.string.government_funded_education),
+                mActivity.getString(R.string.educations_form_array_item_01) + " " + mActivity.getString(R.string.educations_form_array_item_03),
+                mActivity.getString(R.string.funding_forms_array_item_01),
                 "Приказ о зачислении лиц, подавших заявление о согласии на зачисление (по квотам)",
                 mActivity.getString(R.string.months_array_item_07),
                 29,
                 false
         ));
         events.add(new TimelineEvent(
-                mActivity.getString(R.string.full_time_education_form) + " " + mActivity.getString(R.string.part_time_education_form),
-                mActivity.getString(R.string.government_funded_education),
+                mActivity.getString(R.string.educations_form_array_item_01) + " " + mActivity.getString(R.string.educations_form_array_item_03),
+                mActivity.getString(R.string.funding_forms_array_item_01),
                 "Завершение приёма заявлений о согласии на зачисление (Первый этап)",
                 mActivity.getString(R.string.months_array_item_08),
                 1,
                 true
         ));
 
-        mRecyclerView.setAdapter(new TimelineEventsRecyclerAdapter(events, mListener));
+        return events;
     }
 
     @Override

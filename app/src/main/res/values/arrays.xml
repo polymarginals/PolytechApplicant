@@ -2,10 +2,10 @@
 <resources>
 
     <string-array name="titles_array">
-        <item>@string/title_timeline</item>
-        <item>@string/title_menu</item>
-        <item>@string/title_locations</item>
-        <item>@string/title_structure</item>
+        <item>@string/titles_array_item_01</item>
+        <item>@string/titles_array_item_02</item>
+        <item>@string/titles_array_item_03</item>
+        <item>@string/titles_array_item_04</item>
     </string-array>
 
     <string-array name="institutes_array">
@@ -42,14 +42,14 @@
     </string-array>
 
     <string-array name="funding_types_array">
-        <item>@string/government_funded_education</item>
-        <item>@string/self_funded_education</item>
+        <item>@string/funding_forms_array_item_01</item>
+        <item>@string/funding_forms_array_item_02</item>
     </string-array>
 
     <string-array name="education_forms_array">
-        <item>@string/full_time_education_form</item>
-        <item>@string/extramural_education_form</item>
-        <item>@string/part_time_education_form</item>
+        <item>@string/educations_form_array_item_01</item>
+        <item>@string/educations_form_array_item_02</item>
+        <item>@string/educations_form_array_item_03</item>
     </string-array>
 
     <string-array name="menu_entrance_array">

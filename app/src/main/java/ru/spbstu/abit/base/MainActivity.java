@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
-import android.support.transition.Fade;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.res.ResourcesCompat;
@@ -48,8 +47,8 @@ public class MainActivity
 
     private static final String TAG = "MainActivity";
 
-    private static final long MOVE_DEFAULT_TIME = 1000;
-    private static final long FADE_DEFAULT_TIME = 250;
+    /*private static final long MOVE_DEFAULT_TIME = 1000;
+    private static final long FADE_DEFAULT_TIME = 250;*/
 
     private static final int TIMELINE_FRAGMENT  = 1;
     private static final int STRUCTURE_FRAGMENT = 2;
@@ -60,8 +59,8 @@ public class MainActivity
     public static final boolean ACTIVE_TOOLBAR_BACK_BUTTON   = true;
     public static final boolean INACTIVE_TOOLBAR_BACK_BUTTON = false;
 
-    private Fade mEnterTransition = new Fade();
-    private Fade mExitTransition = new Fade();
+    /*private Fade mEnterTransition = new Fade();
+    private Fade mExitTransition = new Fade();*/
 
     private AppBarLayout            mAppBarLayout;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
@@ -135,8 +134,8 @@ public class MainActivity
         mCollapsingToolbarLayout.setExpandedTitleTypeface(ResourcesCompat.getFont(this, R.font.pt_sans_bold));
         setToolbarTitleColor(R.color.colorDark);
 
-        mEnterTransition.setDuration(FADE_DEFAULT_TIME);
-        mExitTransition.setDuration(FADE_DEFAULT_TIME);
+        /*mEnterTransition.setDuration(FADE_DEFAULT_TIME);
+        mExitTransition.setDuration(FADE_DEFAULT_TIME);*/
     }
 
     private void setToolbarTitleColor(int colorId) {
@@ -193,13 +192,9 @@ public class MainActivity
 
         mAppBarLayout.setExpanded(APPBAR_EXPANDED);
 
-        //currentFragment.setExitTransition(mExitTransition);
-        //nextFragment.setEnterTransition(mEnterTransition);
-
         clearFragments();
 
         mFragmentManager.beginTransaction()
-                //.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                 .replace(R.id.fragment_holder, nextFragment)
                 .commitAllowingStateLoss();
     }
@@ -238,9 +233,6 @@ public class MainActivity
         if (bundle != null) {
             nextFragment.setArguments(bundle);
         }
-
-        //currentFragment.setExitTransition(mExitTransition);
-        //nextFragment.setEnterTransition(mEnterTransition);
 
         mFragmentManager.beginTransaction()
                 .hide(currentFragment)
@@ -286,6 +278,12 @@ public class MainActivity
 
     private void toggleSubstrate(int visibility, int colorId) {
         mSubstrateHolder.setVisibility(visibility);
+
+        /*Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.icst_pattern);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
+        bitmapDrawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
+        mAppBarLayout.setBackground(bitmapDrawable);*/
+
         mAppBarLayout.setBackgroundColor(colorId);
         mCollapsingToolbarLayout.setContentScrimColor(colorId);
         mCollapsingToolbarLayout.setStatusBarScrimColor(colorId);
@@ -358,7 +356,7 @@ public class MainActivity
     @Override
     public void onMenuFragmentDismissed() {
         setToolbarSpannableTitle(
-                getString(R.string.title_structure),
+                getString(R.string.titles_array_item_04),
                 R.color.colorDark
         );
         toggleToolbarBackButton(INACTIVE_TOOLBAR_BACK_BUTTON);
