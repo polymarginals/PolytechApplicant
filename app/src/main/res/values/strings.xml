@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Polytech Applicant</string>
 
-    <string name="titles_array_item_01">Selection Committee Timeline</string>
-    <string name="titles_array_item_04">Structure</string>
+    <string name="titles_array_item_01">Admission Timeline</string>
+    <string name="titles_array_item_04">University Structure</string>
     <string name="titles_array_item_03">Locations</string>
-    <string name="titles_array_item_02">Entrance</string>
+    <string name="titles_array_item_02">Admission Questions</string>
 
     <string name="institutes_array_item_01">Institute of Humanities</string>
     <string name="institutes_array_item_02">Institute of Computer Science and Technology</string>

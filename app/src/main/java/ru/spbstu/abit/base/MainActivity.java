@@ -34,6 +34,7 @@ import ru.spbstu.abit.base.home.structure.model.Institute;
 import ru.spbstu.abit.base.home.timeline.TimelineFragment;
 import ru.spbstu.abit.base.home.timeline.model.TimelineEvent;
 import ru.spbstu.abit.core.BaseActivity;
+import ru.spbstu.abit.core.util.ResizeAnimation;
 
 import static ru.spbstu.abit.core.App.getColorId;
 
@@ -47,20 +48,15 @@ public class MainActivity
 
     private static final String TAG = "MainActivity";
 
-    /*private static final long MOVE_DEFAULT_TIME = 1000;
-    private static final long FADE_DEFAULT_TIME = 250;*/
+    private static final int TIMELINE_FRAGMENT  = 0;
+    private static final int STRUCTURE_FRAGMENT = 1;
+    private static final int LOCATIONS_FRAGMENT = 2;
+    private static final int MENU_FRAGMENT      = 3;
 
-    private static final int TIMELINE_FRAGMENT  = 1;
-    private static final int STRUCTURE_FRAGMENT = 2;
-    private static final int LOCATIONS_FRAGMENT = 3;
-    private static final int MENU_FRAGMENT      = 4;
-
-    private static final boolean APPBAR_EXPANDED              = true;
+    private static final boolean APPBAR_EXPANDED             = true;
+    private static final boolean APPBAR_COLLAPSED            = false;
     public static final boolean ACTIVE_TOOLBAR_BACK_BUTTON   = true;
     public static final boolean INACTIVE_TOOLBAR_BACK_BUTTON = false;
-
-    /*private Fade mEnterTransition = new Fade();
-    private Fade mExitTransition = new Fade();*/
 
     private AppBarLayout            mAppBarLayout;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
@@ -84,7 +80,7 @@ public class MainActivity
                     switchToFragment(STRUCTURE_FRAGMENT);
                     return true;
                 case R.id.navigation_locations:
-                    switchToFragment(LOCATIONS_FRAGMENT);
+                    //switchToFragment(LOCATIONS_FRAGMENT);
                     return true;
                 case R.id.navigation_menu:
                     switchToFragment(MENU_FRAGMENT);
@@ -133,9 +129,6 @@ public class MainActivity
         mCollapsingToolbarLayout.setCollapsedTitleTypeface(ResourcesCompat.getFont(this, R.font.pt_sans_bold));
         mCollapsingToolbarLayout.setExpandedTitleTypeface(ResourcesCompat.getFont(this, R.font.pt_sans_bold));
         setToolbarTitleColor(R.color.colorDark);
-
-        /*mEnterTransition.setDuration(FADE_DEFAULT_TIME);
-        mExitTransition.setDuration(FADE_DEFAULT_TIME);*/
     }
 
     private void setToolbarTitleColor(int colorId) {
@@ -153,7 +146,30 @@ public class MainActivity
         setToolbarTitleColor(R.color.colorDark);
     }
 
+    public void scaleAppbarHeight(boolean scaleUp) {
+        ResizeAnimation resizeAnimation;
+        if (scaleUp) {
+            resizeAnimation = new ResizeAnimation(
+                    mAppBarLayout,
+                    (int) getResources().getDimension(R.dimen.appbar_big_height),
+                    (int) getResources().getDimension(R.dimen.appbar_small_height)
+            );
+        } else {
+            resizeAnimation = new ResizeAnimation(
+                    mAppBarLayout,
+                    (int) getResources().getDimension(R.dimen.appbar_small_height),
+                    (int) getResources().getDimension(R.dimen.appbar_big_height)
+            );
+        }
+        resizeAnimation.setDuration(500);
+        mAppBarLayout.startAnimation(resizeAnimation);
+        //mAppBarLayout.animate().scaleY(height).setInterpolator(new AccelerateDecelerateInterpolator()).setDuration(1000);
+    }
+
     private void switchToFragment(int id) {
+        mAppBarLayout.setExpanded(APPBAR_EXPANDED);
+        clearFragments();
+
         Fragment currentFragment = mFragmentManager.findFragmentById(R.id.fragment_holder);
         if (currentFragment == null) {
             Log.e(TAG, getString(R.string.error_fragment_is_null));
@@ -170,29 +186,26 @@ public class MainActivity
         switch (id) {
             case TIMELINE_FRAGMENT:
                 if (currentFragment instanceof TimelineFragment) {
-                    mAppBarLayout.setExpanded(APPBAR_EXPANDED);
                     return;
                 }
                 nextFragment = TimelineFragment.newInstance();
                 break;
+
             case STRUCTURE_FRAGMENT:
                 if (currentFragment instanceof StructureFragment) {
-                    mAppBarLayout.setExpanded(APPBAR_EXPANDED);
                     return;
                 }
                 nextFragment = StructureFragment.newInstance();
                 break;
+
             case LOCATIONS_FRAGMENT:
                 // TODO
                 return;
+
             case MENU_FRAGMENT:
                 nextFragment = MenuFragment.newInstance();
                 break;
         }
-
-        mAppBarLayout.setExpanded(APPBAR_EXPANDED);
-
-        clearFragments();
 
         mFragmentManager.beginTransaction()
                 .replace(R.id.fragment_holder, nextFragment)
@@ -200,6 +213,8 @@ public class MainActivity
     }
 
     private void addNewFragment(int id, Bundle bundle) {
+        mAppBarLayout.setExpanded(APPBAR_EXPANDED);
+
         Fragment currentFragment = mFragmentManager.findFragmentById(R.id.fragment_holder);
         if (currentFragment == null) {
             Log.e(TAG, getString(R.string.error_fragment_is_null));
@@ -217,27 +232,25 @@ public class MainActivity
             case TIMELINE_FRAGMENT:
                 nextFragment = TimelineFragment.newInstance();
                 break;
+
             case STRUCTURE_FRAGMENT:
                 nextFragment = StructureFragment.newInstance();
                 break;
+
             case LOCATIONS_FRAGMENT:
                 // TODO
                 return;
+
             case MENU_FRAGMENT:
                 nextFragment = MenuFragment.newInstance();
                 break;
         }
 
-        mAppBarLayout.setExpanded(true);
-
-        if (bundle != null) {
-            nextFragment.setArguments(bundle);
-        }
+        nextFragment.setArguments(bundle);
 
         mFragmentManager.beginTransaction()
                 .hide(currentFragment)
                 .add(R.id.fragment_holder, nextFragment)
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                 .addToBackStack(null)
                 .commitAllowingStateLoss();
     }
@@ -278,12 +291,6 @@ public class MainActivity
 
     private void toggleSubstrate(int visibility, int colorId) {
         mSubstrateHolder.setVisibility(visibility);
-
-        /*Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.icst_pattern);
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
-        bitmapDrawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
-        mAppBarLayout.setBackground(bitmapDrawable);*/
-
         mAppBarLayout.setBackgroundColor(colorId);
         mCollapsingToolbarLayout.setContentScrimColor(colorId);
         mCollapsingToolbarLayout.setStatusBarScrimColor(colorId);
@@ -360,5 +367,12 @@ public class MainActivity
                 R.color.colorDark
         );
         toggleToolbarBackButton(INACTIVE_TOOLBAR_BACK_BUTTON);
+        scaleAppbarHeight(false);
+
+        /*mAppBarLayout.getLayoutParams().height = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                140,
+                getResources().getDisplayMetrics()
+        );*/
     }
 }

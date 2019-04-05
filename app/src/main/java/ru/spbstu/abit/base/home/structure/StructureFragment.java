@@ -170,7 +170,7 @@ public class StructureFragment extends HomeFragment {
                 null,
                 R.drawable.immet_pattern,
                 R.color.colorImmetPrimary,
-                R.color.colorImmetPrimary,
+                R.color.colorImmetLight,
                 "https://iamm.spbstu.ru/"
         ));
         institutes.add(new Institute(

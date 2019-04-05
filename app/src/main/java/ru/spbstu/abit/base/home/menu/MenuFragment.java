@@ -34,6 +34,7 @@ public class MenuFragment extends HomeFragment {
     private View mView;
     private RecyclerView mRecyclerView;
 
+    private boolean mUsingAsMainMenu = true;
     private String mMenuTitle = null;
     private int mSubtractColorId = R.color.colorIcstPrimary;
     private List<MenuListItem> mMenuListItems = null;
@@ -94,6 +95,7 @@ public class MenuFragment extends HomeFragment {
         if (getArguments() != null) {
             if (getArguments().containsKey(ARGUMENT_LIST)) {
                 mMenuListItems = getArguments().getParcelableArrayList(ARGUMENT_LIST);
+                mUsingAsMainMenu = false;
             }
             if (getArguments().containsKey(ARGUMENT_TITLE)) {
                 mMenuTitle = getArguments().getString(ARGUMENT_TITLE);
@@ -114,7 +116,8 @@ public class MenuFragment extends HomeFragment {
         if (mMenuTitle == null) {
             mMenuTitle = getString(R.string.titles_array_item_02);
         }
-        if (mMenuListItems != null) {
+        if (!mUsingAsMainMenu) {
+            ((MainActivity) mActivity).scaleAppbarHeight(true);
             ((MainActivity) mActivity).toggleToolbarBackButton(MainActivity.ACTIVE_TOOLBAR_BACK_BUTTON);
         }
         ((MainActivity) mActivity).setToolbarSpannableTitle(
@@ -127,7 +130,7 @@ public class MenuFragment extends HomeFragment {
     protected void setContent ( ) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
 
-        if (mMenuListItems == null || mMenuListItems.isEmpty()) {
+        if (mUsingAsMainMenu) {
             mMenuListItems = getDefaultMenuEntranceList();
         }
 
@@ -139,62 +142,32 @@ public class MenuFragment extends HomeFragment {
         menuListItems.add(new MenuListItem(
                 mActivity.getString(R.string.menu_entrance_array_item_01),
                 R.drawable.ic_assignment,
-                R.color.colorIcstPrimary,
-                R.color.colorIcstLight
+                R.color.colorPrimary,
+                R.color.colorLightSalad
         ));
         menuListItems.add(new MenuListItem(
                 mActivity.getString(R.string.menu_entrance_array_item_02),
                 R.drawable.ic_rules,
-                R.color.colorIcstPrimary,
-                R.color.colorIcstLight
+                R.color.colorPrimary,
+                R.color.colorLightSalad
         ));
         menuListItems.add(new MenuListItem(
                 mActivity.getString(R.string.menu_entrance_array_item_03),
                 R.drawable.ic_why_polytech,
-                R.color.colorIcstPrimary,
-                R.color.colorIcstLight
+                R.color.colorPrimary,
+                R.color.colorLightSalad
         ));
         menuListItems.add(new MenuListItem(
                 mActivity.getString(R.string.menu_entrance_array_item_04),
                 R.drawable.ic_contacts,
-                R.color.colorIcstPrimary,
-                R.color.colorIcstLight
+                R.color.colorPrimary,
+                R.color.colorLightSalad
         ));
         menuListItems.add(new MenuListItem(
                 mActivity.getString(R.string.menu_entrance_array_item_05),
                 R.drawable.ic_people,
-                R.color.colorIcstPrimary,
-                R.color.colorIcstLight
-        ));
-        menuListItems.add(new MenuListItem(
-                mActivity.getString(R.string.menu_entrance_array_item_01),
-                R.drawable.ic_assignment,
-                R.color.colorIcstPrimary,
-                R.color.colorIcstLight
-        ));
-        menuListItems.add(new MenuListItem(
-                mActivity.getString(R.string.menu_entrance_array_item_02),
-                R.drawable.ic_rules,
-                R.color.colorIcstPrimary,
-                R.color.colorIcstLight
-        ));
-        menuListItems.add(new MenuListItem(
-                mActivity.getString(R.string.menu_entrance_array_item_03),
-                R.drawable.ic_why_polytech,
-                R.color.colorIcstPrimary,
-                R.color.colorIcstLight
-        ));
-        menuListItems.add(new MenuListItem(
-                mActivity.getString(R.string.menu_entrance_array_item_04),
-                R.drawable.ic_contacts,
-                R.color.colorIcstPrimary,
-                R.color.colorIcstLight
-        ));
-        menuListItems.add(new MenuListItem(
-                mActivity.getString(R.string.menu_entrance_array_item_05),
-                R.drawable.ic_people,
-                R.color.colorIcstPrimary,
-                R.color.colorIcstLight
+                R.color.colorPrimary,
+                R.color.colorLightSalad
         ));
 
         return menuListItems;
@@ -210,7 +183,7 @@ public class MenuFragment extends HomeFragment {
     public void onDestroyView() {
         super.onDestroyView();
 
-        if (mActivity instanceof OnMenuFragmentDismissListener) {
+        if (!mUsingAsMainMenu && mActivity instanceof OnMenuFragmentDismissListener) {
             ((OnMenuFragmentDismissListener) mActivity).onMenuFragmentDismissed();
         }
     }

@@ -3,4 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="appbar_small_height">140dp</dimen>
+    <dimen name="appbar_big_height">200dp</dimen>
 </resources>
