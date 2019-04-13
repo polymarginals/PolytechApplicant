@@ -95,7 +95,8 @@ public class StructureFragment extends HomeFragment {
     protected void initToolbar() {
         ((MainActivity) mActivity).setToolbarSpannableTitle(
                 mActivity.getString(R.string.titles_array_item_04),
-                R.color.colorDark
+                R.color.colorDark,
+                false
         );
     }
 

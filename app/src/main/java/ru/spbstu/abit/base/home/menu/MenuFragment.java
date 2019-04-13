@@ -36,7 +36,7 @@ public class MenuFragment extends HomeFragment {
 
     private boolean mUsingAsMainMenu = true;
     private String mMenuTitle = null;
-    private int mSubtractColorId = R.color.colorIcstPrimary;
+    private int mSubtractColorId = R.color.colorGreen;
     private List<MenuListItem> mMenuListItems = null;
 
     public MenuFragment ( ) {}
@@ -119,11 +119,19 @@ public class MenuFragment extends HomeFragment {
         if (!mUsingAsMainMenu) {
             ((MainActivity) mActivity).scaleAppbarHeight(true);
             ((MainActivity) mActivity).toggleToolbarBackButton(MainActivity.ACTIVE_TOOLBAR_BACK_BUTTON);
+
+            ((MainActivity) mActivity).setToolbarSpannableTitle(
+                    mMenuTitle,
+                    mSubtractColorId,
+                    false
+            );
+        } else {
+            ((MainActivity) mActivity).setToolbarSpannableTitle(
+                    mMenuTitle,
+                    mSubtractColorId,
+                    true
+            );
         }
-        ((MainActivity) mActivity).setToolbarSpannableTitle(
-                mMenuTitle,
-                mSubtractColorId
-        );
     }
 
     @Override
@@ -139,6 +147,36 @@ public class MenuFragment extends HomeFragment {
 
     private ArrayList<MenuListItem> getDefaultMenuEntranceList() {
         ArrayList<MenuListItem> menuListItems = new ArrayList<>();
+        menuListItems.add(new MenuListItem(
+                mActivity.getString(R.string.menu_entrance_array_item_01),
+                R.drawable.ic_assignment,
+                R.color.colorPrimary,
+                R.color.colorLightSalad
+        ));
+        menuListItems.add(new MenuListItem(
+                mActivity.getString(R.string.menu_entrance_array_item_02),
+                R.drawable.ic_rules,
+                R.color.colorPrimary,
+                R.color.colorLightSalad
+        ));
+        menuListItems.add(new MenuListItem(
+                mActivity.getString(R.string.menu_entrance_array_item_03),
+                R.drawable.ic_why_polytech,
+                R.color.colorPrimary,
+                R.color.colorLightSalad
+        ));
+        menuListItems.add(new MenuListItem(
+                mActivity.getString(R.string.menu_entrance_array_item_04),
+                R.drawable.ic_contacts,
+                R.color.colorPrimary,
+                R.color.colorLightSalad
+        ));
+        menuListItems.add(new MenuListItem(
+                mActivity.getString(R.string.menu_entrance_array_item_05),
+                R.drawable.ic_people,
+                R.color.colorPrimary,
+                R.color.colorLightSalad
+        ));
         menuListItems.add(new MenuListItem(
                 mActivity.getString(R.string.menu_entrance_array_item_01),
                 R.drawable.ic_assignment,

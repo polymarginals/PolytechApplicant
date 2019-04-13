@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#39B54A</color>
-    <color name="colorPrimaryDark">#00841b</color>
+    <color name="colorPrimaryDark">#479C3E</color>
     <color name="colorAccent">#FFFFFF</color>
 
     <color name="colorText">@color/colorDark</color>
@@ -16,6 +16,8 @@
     <color name="colorLightSalad">#C8E6C9</color>
 
     <color name="colorBackground">@color/colorGrey</color>
+
+    <color name="colorGreen">#53B54B</color>
 
     <!-- Institute of Computer Science and Technology - ИКНТ - Институт компьютерных наук
         и технологий -->

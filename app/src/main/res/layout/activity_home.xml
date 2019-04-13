@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:scaleType="centerCrop"
                 android:contentDescription="@string/image_description_technical_support_image" />
 
             <ImageView
@@ -43,16 +43,17 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/appbar_small_height"
             android:background="@color/colorGrey"
-            android:animateLayoutChanges="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
+                app:expandedTitleTextAppearance="@style/TextAppearance.MyApp.Title.Expanded"
+                app:collapsedTitleTextAppearance="@style/TextAppearance.MyApp.Title.Collapsed"
                 app:expandedTitleMarginEnd="24dp"
                 app:expandedTitleMarginStart="24dp"
+                app:scrimAnimationDuration="200"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
                 app:maxLines="3">
 
@@ -83,4 +84,5 @@
         android:background="?android:attr/windowBackground"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/navigation" />
+
 </RelativeLayout>

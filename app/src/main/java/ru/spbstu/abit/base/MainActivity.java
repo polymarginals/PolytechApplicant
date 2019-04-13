@@ -126,8 +126,13 @@ public class MainActivity
         mFragmentManager = getSupportFragmentManager();
         mBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        mCollapsingToolbarLayout.setCollapsedTitleTypeface(ResourcesCompat.getFont(this, R.font.pt_sans_bold));
-        mCollapsingToolbarLayout.setExpandedTitleTypeface(ResourcesCompat.getFont(this, R.font.pt_sans_bold));
+        mCollapsingToolbarLayout.setCollapsedTitleTypeface(ResourcesCompat.getFont(
+                this, R.font.pt_sans_bold
+        ));
+        mCollapsingToolbarLayout.setExpandedTitleTypeface(ResourcesCompat.getFont(
+                this, R.font.pt_sans_bold
+        ));
+
         setToolbarTitleColor(R.color.colorDark);
     }
 
@@ -163,7 +168,6 @@ public class MainActivity
         }
         resizeAnimation.setDuration(500);
         mAppBarLayout.startAnimation(resizeAnimation);
-        //mAppBarLayout.animate().scaleY(height).setInterpolator(new AccelerateDecelerateInterpolator()).setDuration(1000);
     }
 
     private void switchToFragment(int id) {
@@ -261,10 +265,10 @@ public class MainActivity
         }
     }
 
-    public void setToolbarSpannableTitle(String title, int colorId) {
+    public void setToolbarSpannableTitle(String title, int colorId, boolean isDrawable) {
         if (colorId == R.color.colorDark) {
             setToolbarTitle(title);
-            toggleSubstrate(View.GONE, getColorId(R.color.colorGrey));
+            toggleSubstrate(View.GONE, getColorId(R.color.colorGrey), isDrawable);
             return;
         }
 
@@ -278,7 +282,7 @@ public class MainActivity
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         );
 
-        toggleSubstrate(View.VISIBLE, getColorId(colorId));
+        toggleSubstrate(View.VISIBLE, getColorId(colorId), isDrawable);
         setToolbarTitle(spannableString);
     }
 
@@ -289,12 +293,24 @@ public class MainActivity
         }
     }
 
-    private void toggleSubstrate(int visibility, int colorId) {
+    private void toggleSubstrate(int visibility, int colorId, boolean isDrawable) {
         mSubstrateHolder.setVisibility(visibility);
-        mAppBarLayout.setBackgroundColor(colorId);
+        mAppBarLayout.setBackgroundColor(getColorId(android.R.color.transparent));
         mCollapsingToolbarLayout.setContentScrimColor(colorId);
-        mCollapsingToolbarLayout.setStatusBarScrimColor(colorId);
-        mSubstrateImage.setBackgroundColor(colorId);
+        if (isDrawable) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mSubstrateImage.setImageDrawable(getDrawable(R.drawable.icst_pattern));
+            } else {
+                mSubstrateImage.setImageDrawable(ResourcesCompat.getDrawable(
+                        getResources(),
+                        R.drawable.icst_pattern,
+                        getTheme()
+                ));
+            }
+        } else {
+            mSubstrateImage.setImageResource(0);
+            mSubstrateImage.setBackgroundColor(colorId);
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -364,15 +380,10 @@ public class MainActivity
     public void onMenuFragmentDismissed() {
         setToolbarSpannableTitle(
                 getString(R.string.titles_array_item_04),
-                R.color.colorDark
+                R.color.colorDark,
+                false
         );
         toggleToolbarBackButton(INACTIVE_TOOLBAR_BACK_BUTTON);
         scaleAppbarHeight(false);
-
-        /*mAppBarLayout.getLayoutParams().height = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                140,
-                getResources().getDisplayMetrics()
-        );*/
     }
 }
